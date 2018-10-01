@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +18,14 @@ namespace Range
             To = to;
         }
 
-        public double CalcIntervalLength()
+        public double GetLength()
         {
             return To - From;
         }
 
         public bool IsInside(double number)
         {
-            bool isInside = false;
-            if (number <= To && number >= From)
-            {
-                isInside = true;
-            }
-            return isInside;
+            return (number <= To && number >= From);
         }
     }
 }

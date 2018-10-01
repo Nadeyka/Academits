@@ -7,7 +7,7 @@ namespace Range
         static void Main()
         {
             Range range = new Range(-0.1, 25);
-            double length = range.CalcIntervalLength();
+            double length = range.GetLength();
             Console.WriteLine("Длина интервала: " + length);
             double number = -2.6;
             bool isInInterval = range.IsInside(number);
