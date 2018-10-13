@@ -28,99 +28,118 @@ namespace Range
             return (number <= To && number >= From);
         }
 
-        public static Range GetIntersect(Range r1, Range r2)
+        public Range GetIntersect(Range r2)
         {
-            Range intersectRange = new Range(r1.From, r1.To);
-            if (r1.To < r2.From)
+            Range intersectRange = new Range(From, To);
+            if (To < r2.From || From > r2.To)
             {
                 return null;
             }
-            if (r1.To >= r2.From && r1.From <= r2.From)
+
+            double[] rangeBorders = { From, To, r2.From, r2.To };
+            double maxElement = GetMax(rangeBorders);
+            double minElement = GetMin(rangeBorders);
+            double[] borders = {minElement, maxElement};
+
+            foreach (double e in rangeBorders)
             {
-                intersectRange.From = r2.From;
-                intersectRange.To = r1.To;
+                if (e != minElement && e != maxElement)
+                {
+                    if (borders[0] == minElement)
+                    {
+                        borders[0] = e;
+                    }
+                    else
+                    {
+                        borders[1] = e;
+                    }
+                }
             }
-            if (r1.From >= r2.From && r1.To <= r2.To)
+            if (borders[0] < borders[1])
             {
-                intersectRange.From = r1.From;
-                intersectRange.To = r1.To;
+               intersectRange.From = borders[0];
+               intersectRange.To = borders[1];
             }
-            if (r1.From <= r2.From && r1.To >= r2.To)
+            else
             {
-                intersectRange.From = r2.From;
-                intersectRange.To = r2.To;
-            }
-            if (r1.From >= r2.From && r1.To >= r2.To)
-            {
-                intersectRange.From = r1.From;
-                intersectRange.To = r2.To;
+                intersectRange.From = borders[1];
+                intersectRange.To = borders[0];
             }
             return intersectRange;
         }
 
-        public static Range[] GetUnion(Range r1, Range r2)
+        private double GetMax(double[] rangeBorders)
         {
-            Range[] unionRangeArray = new Range[2];
-            unionRangeArray[0] = r1;
-            // Range unionRange = new Range(r1.From, r1.To);
-            if (r1.To < r2.From)
+            double max = rangeBorders[0];
+            foreach (double e in rangeBorders)
             {
-                unionRangeArray[0] = r1;
-                unionRangeArray[1] = r2;
+                if (e > max)
+                {
+                    max = e;
+                }
             }
-            if (r1.To >= r2.From && r1.From <= r2.From)
-            {
-                unionRangeArray[0].From = r1.From;
-                unionRangeArray[0].To = r2.To;
-            }
-            if (r1.From >= r2.From && r1.To <= r2.To)
-            {
-                unionRangeArray[0].From = r2.From;
-                unionRangeArray[0].To = r2.To;
-            }
-            if (r1.From <= r2.From && r1.To >= r2.To)
-            {
-                unionRangeArray[0].From = r1.From;
-                unionRangeArray[0].To = r1.To;
-            }
-            if (r1.From >= r2.From && r1.To >= r2.To)
-            {
-                unionRangeArray[0].From = r2.From;
-                unionRangeArray[0].To = r1.To;
-            }
-            return unionRangeArray;
+            return max;
         }
 
-        public static Range[] GetDifference(Range r1, Range r2)
+        private double GetMin(double[] rangeBorders)
         {
-            Range[] differenceRangeArray = new Range[2];
-            differenceRangeArray[0] = r1;
-            if (r1.To < r2.From)
+            double min = rangeBorders[0];
+            foreach (double e in rangeBorders)
             {
-                differenceRangeArray[0] = r1;
+                if (e < min)
+                {
+                    min = e;
+                }
             }
-            if (r1.To >= r2.From && r1.From <= r2.From)
+            return min;
+        }
+
+        public Range[] GetUnion(Range r2)
+        {
+            if (To < r2.From || From > r2.To)
             {
-                differenceRangeArray[0].From = r1.From;
-                differenceRangeArray[0].To = r2.From - 0.001;
+                Range[] unionRangeArray = { this, r2 };
+                return unionRangeArray;
             }
-            if (r1.From >= r2.From && r1.To <= r2.To)
+            else
             {
-                differenceRangeArray[0] = null;
+                double[] rangeBorders = { From, To, r2.From, r2.To };
+                double maxElement = GetMax(rangeBorders);
+                double minElement = GetMin(rangeBorders);
+
+                Range[] unionRangeArray = { new Range(minElement, maxElement) };
+                return unionRangeArray;
             }
-            if (r1.From <= r2.From && r1.To >= r2.To)
+        }
+
+        public Range[] GetDifference(Range r2)
+        {
+            if (To < r2.From)
             {
-                differenceRangeArray[0].From = r1.From;
-                differenceRangeArray[0].To = r2.From - 0.001;
-                differenceRangeArray[1].From = r2.To + 0.001;
-                differenceRangeArray[1].To = r1.To;
+                Range[] differenceRangeArray = { this };
+                return differenceRangeArray;
             }
-            if (r1.From >= r2.From && r1.To >= r2.To)
+            else if (To >= r2.From && From <= r2.From)
             {
-                differenceRangeArray[0].From = r2.To + 0.001;
-                differenceRangeArray[0].To = r1.To;
+                Range[] differenceRangeArray = { new Range(From, r2.From) };
+                return differenceRangeArray;
             }
-            return differenceRangeArray;
+            else if (From <= r2.From && To >= r2.To)
+            {
+                Range[] differenceRangeArray = { new Range(From, r2.From), new Range(r2.To, To) };
+                return differenceRangeArray;
+            }
+            else if (From >= r2.From && To >= r2.To)
+            {
+                Range[] differenceRangeArray = { new Range(r2.To, To) };
+                return differenceRangeArray;
+            }
+            else //(From >= r2.From && To <= r2.To)
+            {
+                return null;
+            }
+
+            //return differenceRangeArray;
         }
 
     }

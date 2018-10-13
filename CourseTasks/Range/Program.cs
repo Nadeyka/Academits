@@ -25,7 +25,7 @@ namespace Range
             Console.WriteLine("Исходный интервал 1: {0} ... {1}", r1.From, r1.To);
             Console.WriteLine("Исходный интервал 2: {0} ... {1}", r2.From, r2.To);
 
-            Range intersectRange = Range.GetIntersect(r1, r2);
+            Range intersectRange = r1.GetIntersect(r2);
             if (intersectRange != null)
             {
                 Console.WriteLine("Интервал пересечения: {0} ... {1}", intersectRange.From, intersectRange.To);
@@ -35,8 +35,8 @@ namespace Range
                 Console.WriteLine("Интервалы не пересекаются");
             }
 
-            Range[] unionRange = Range.GetUnion(r1, r2);
-            if (unionRange[1] != null)
+            Range[] unionRange = r1.GetUnion(r2);
+            if (unionRange.Length == 2)
             {
                 Console.WriteLine("Интервал объединения 1: {0} ... {1}", unionRange[0].From, unionRange[0].To);
                 Console.WriteLine("Интервал объединения 2: {0} ... {1}", unionRange[1].From, unionRange[1].To);
@@ -46,8 +46,8 @@ namespace Range
                 Console.WriteLine("Интервал объединения: {0} ... {1}", unionRange[0].From, unionRange[0].To);
             }
 
-            Range[] differenceRange = Range.GetDifference(r1, r2);
-            if (differenceRange[1] != null)
+            Range[] differenceRange = r1.GetDifference(r2);
+            if (differenceRange.Length == 2)
             {
                 Console.WriteLine("Интервал разности 1: {0} ... {1}", differenceRange[0].From, differenceRange[0].To);
                 Console.WriteLine("Интервал разности 2: {0} ... {1}", differenceRange[1].From, differenceRange[1].To);
