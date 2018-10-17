@@ -2,7 +2,7 @@
 
 namespace Shapes
 {
-    public class Square : Shape
+    public class Square : IShape
     {
         public double Length { get; set; }
 
@@ -13,22 +13,22 @@ namespace Shapes
             Length = length;
         }
 
-        public override double GetArea()
+        public double GetArea()
         {
             return Math.Sqrt(Length);
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return Length * edgesQuantity;
         }
 
-        public override double GetHeight()
+        public double GetHeight()
         {
             return Length;
         }
 
-        public override double GetWidth()
+        public double GetWidth()
         {
             return Length;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shapes
 {
-    public class Rectangle : Shape
+    public class Rectangle : IShape
     {
         public double Width { get; set; }
         public double Height { get; set; }
@@ -17,22 +17,22 @@ namespace Shapes
             Height = height;
         }
 
-        public override double GetArea()
+        public double GetArea()
         {
             return Width * Height;
         }
 
-        public override double GetPerimeter()
+        public double GetPerimeter()
         {
             return Width * 2 + Height * 2;
         }
 
-        public override double GetHeight()
+        public double GetHeight()
         {
             return Height;
         }
 
-        public override double GetWidth()
+        public double GetWidth()
         {
             return Width;
         }

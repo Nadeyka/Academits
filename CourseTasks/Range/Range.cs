@@ -30,66 +30,38 @@ namespace Range
 
         public Range GetIntersect(Range r2)
         {
-            Range intersectRange = new Range(From, To);
             if (To < r2.From || From > r2.To)
             {
                 return null;
             }
 
-            double[] rangeBorders = { From, To, r2.From, r2.To };
-            double maxElement = GetMax(rangeBorders);
-            double minElement = GetMin(rangeBorders);
-            double[] borders = {minElement, maxElement};
-
-            foreach (double e in rangeBorders)
+            double maxElement = GetMax(To, r2.To);
+            double minElement = GetMin(From, r2.From);
+            double leftBorder = From != minElement ? From : r2.From;
+            double rightBorder = To != maxElement ? To : r2.To;
+            if (leftBorder != rightBorder)
             {
-                if (e != minElement && e != maxElement)
-                {
-                    if (borders[0] == minElement)
-                    {
-                        borders[0] = e;
-                    }
-                    else
-                    {
-                        borders[1] = e;
-                    }
-                }
+                return new Range(leftBorder, rightBorder);
             }
-            if (borders[0] < borders[1])
-            {
-               intersectRange.From = borders[0];
-               intersectRange.To = borders[1];
-            }
-            else
-            {
-                intersectRange.From = borders[1];
-                intersectRange.To = borders[0];
-            }
-            return intersectRange;
+            return null;
         }
 
-        private double GetMax(double[] rangeBorders)
+        private double GetMax(double number1, double number2)
         {
-            double max = rangeBorders[0];
-            foreach (double e in rangeBorders)
+            double max = number1;
+            if (number2 > max)
             {
-                if (e > max)
-                {
-                    max = e;
-                }
+                max = number2;
             }
             return max;
         }
 
-        private double GetMin(double[] rangeBorders)
+        private double GetMin(double number1, double number2)
         {
-            double min = rangeBorders[0];
-            foreach (double e in rangeBorders)
+            double min = number1;
+            if (number2 < min)
             {
-                if (e < min)
-                {
-                    min = e;
-                }
+                min = number2;
             }
             return min;
         }
@@ -98,49 +70,33 @@ namespace Range
         {
             if (To < r2.From || From > r2.To)
             {
-                Range[] unionRangeArray = { this, r2 };
-                return unionRangeArray;
+                return new[] { new Range(From, To), new Range(r2.From, r2.To) };
             }
-            else
-            {
-                double[] rangeBorders = { From, To, r2.From, r2.To };
-                double maxElement = GetMax(rangeBorders);
-                double minElement = GetMin(rangeBorders);
 
-                Range[] unionRangeArray = { new Range(minElement, maxElement) };
-                return unionRangeArray;
-            }
+            double maxElement = GetMax(To, r2.To);
+            double minElement = GetMin(From, r2.From);
+            return new[] { new Range(minElement, maxElement) };
         }
 
         public Range[] GetDifference(Range r2)
         {
-            if (To < r2.From)
+            if (To < r2.From || From > r2.To)
             {
-                Range[] differenceRangeArray = { this };
-                return differenceRangeArray;
+                return new[] { new Range(From, To) };
             }
-            else if (To >= r2.From && From <= r2.From)
+            if (From < r2.From && To <= r2.To)
             {
-                Range[] differenceRangeArray = { new Range(From, r2.From) };
-                return differenceRangeArray;
+                return new[] { new Range(From, r2.From) };
             }
-            else if (From <= r2.From && To >= r2.To)
+            if (From < r2.From && To > r2.To)
             {
-                Range[] differenceRangeArray = { new Range(From, r2.From), new Range(r2.To, To) };
-                return differenceRangeArray;
+                return new[] { new Range(From, r2.From), new Range(r2.To, To) };
             }
-            else if (From >= r2.From && To >= r2.To)
+            if (From >= r2.From && To > r2.To)
             {
-                Range[] differenceRangeArray = { new Range(r2.To, To) };
-                return differenceRangeArray;
+                return new[] { new Range(r2.To, To) };
             }
-            else //(From >= r2.From && To <= r2.To)
-            {
-                return null;
-            }
-
-            //return differenceRangeArray;
+            return new Range[0];
         }
-
     }
 }
