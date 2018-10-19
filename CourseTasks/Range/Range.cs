@@ -30,40 +30,14 @@ namespace Range
 
         public Range GetIntersect(Range r2)
         {
-            if (To < r2.From || From > r2.To)
+            if (To <= r2.From || From >= r2.To)
             {
                 return null;
             }
-
-            double maxElement = GetMax(To, r2.To);
-            double minElement = GetMin(From, r2.From);
-            double leftBorder = From != minElement ? From : r2.From;
-            double rightBorder = To != maxElement ? To : r2.To;
-            if (leftBorder != rightBorder)
-            {
-                return new Range(leftBorder, rightBorder);
-            }
-            return null;
-        }
-
-        private double GetMax(double number1, double number2)
-        {
-            double max = number1;
-            if (number2 > max)
-            {
-                max = number2;
-            }
-            return max;
-        }
-
-        private double GetMin(double number1, double number2)
-        {
-            double min = number1;
-            if (number2 < min)
-            {
-                min = number2;
-            }
-            return min;
+            double[] arrayD =   {From, To, r2.From, r2.To };
+            double leftBorder = From != arrayD.Min() ? From : r2.From;
+            double rightBorder = To != arrayD.Max() ? To : r2.To;
+            return new Range(leftBorder, rightBorder);
         }
 
         public Range[] GetUnion(Range r2)
@@ -73,9 +47,8 @@ namespace Range
                 return new[] { new Range(From, To), new Range(r2.From, r2.To) };
             }
 
-            double maxElement = GetMax(To, r2.To);
-            double minElement = GetMin(From, r2.From);
-            return new[] { new Range(minElement, maxElement) };
+            double[] arrayD = { From, To, r2.From, r2.To };
+            return new[] { new Range(arrayD.Min(), arrayD.Max()) };
         }
 
         public Range[] GetDifference(Range r2)
@@ -84,7 +57,7 @@ namespace Range
             {
                 return new[] { new Range(From, To) };
             }
-            if (From < r2.From && To <= r2.To)
+            if (From < r2.From && To < r2.To)
             {
                 return new[] { new Range(From, r2.From) };
             }
@@ -92,7 +65,7 @@ namespace Range
             {
                 return new[] { new Range(From, r2.From), new Range(r2.To, To) };
             }
-            if (From >= r2.From && To > r2.To)
+            if (From > r2.From && To > r2.To)
             {
                 return new[] { new Range(r2.To, To) };
             }
