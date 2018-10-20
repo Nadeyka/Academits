@@ -34,10 +34,7 @@ namespace Range
             {
                 return null;
             }
-            double[] arrayD =   {From, To, r2.From, r2.To };
-            double leftBorder = From != arrayD.Min() ? From : r2.From;
-            double rightBorder = To != arrayD.Max() ? To : r2.To;
-            return new Range(leftBorder, rightBorder);
+            return new Range(Math.Max(From, r2.From), Math.Min(To, r2.To));
         }
 
         public Range[] GetUnion(Range r2)
@@ -65,7 +62,7 @@ namespace Range
             {
                 return new[] { new Range(From, r2.From), new Range(r2.To, To) };
             }
-            if (From > r2.From && To > r2.To)
+            if (From >= r2.From && To > r2.To)
             {
                 return new[] { new Range(r2.To, To) };
             }
