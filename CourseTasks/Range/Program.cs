@@ -21,7 +21,7 @@ namespace Range
             }
 
             Range r1 = new Range(-200, 220);
-            Range r2 = new Range(200, 550);
+            Range r2 = new Range(220, 550);
             Console.WriteLine("Исходный интервал 1: {0} ... {1}", r1.From, r1.To);
             Console.WriteLine("Исходный интервал 2: {0} ... {1}", r2.From, r2.To);
 

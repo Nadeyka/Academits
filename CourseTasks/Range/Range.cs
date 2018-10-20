@@ -50,7 +50,7 @@ namespace Range
 
         public Range[] GetDifference(Range r2)
         {
-            if (To < r2.From || From > r2.To)
+            if (To <= r2.From || From >= r2.To)
             {
                 return new[] { new Range(From, To) };
             }
