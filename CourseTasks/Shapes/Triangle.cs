@@ -44,9 +44,9 @@ namespace Shapes
 
         public double GetPerimeter()
         {
-            double side1 = Math.Sqrt(Math.Pow(X2 - X1, 2) - Math.Pow(Y2 - Y1, 2));
-            double side2 = Math.Sqrt(Math.Pow(X3 - X1, 2) - Math.Pow(Y3 - Y1, 2));
-            double side3 = Math.Sqrt(Math.Pow(X3 - X2, 2) - Math.Pow(Y3 - Y2, 2));
+            double side1 = Math.Sqrt(Math.Abs(Math.Pow(X2 - X1, 2) - Math.Pow(Y2 - Y1, 2)));
+            double side2 = Math.Sqrt(Math.Abs(Math.Pow(X3 - X1, 2) - Math.Pow(Y3 - Y1, 2)));
+            double side3 = Math.Sqrt(Math.Abs(Math.Pow(X3 - X2, 2) - Math.Pow(Y3 - Y2, 2)));
             return side1 + side2 + side3;
         }
 
@@ -76,5 +76,14 @@ namespace Shapes
             return min;
         }
 
+        public override string ToString()
+        {
+            StringBuilder sBuilder = new StringBuilder("Треугольник\n");
+            sBuilder.Append("Площадь: " + GetArea() + "\n");
+            sBuilder.Append("Периметр: " + GetPerimeter() + "\n");
+            sBuilder.Append("Ширина: " + GetWidth() + "\n");
+            sBuilder.Append("Высота: " + GetHeight() + "\n");
+            return sBuilder.ToString();
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace Range
             }
 
             Range r1 = new Range(-200, 220);
-            Range r2 = new Range(220, 550);
+            Range r2 = new Range(200, 500);
             Console.WriteLine("Исходный интервал 1: {0} ... {1}", r1.From, r1.To);
             Console.WriteLine("Исходный интервал 2: {0} ... {1}", r2.From, r2.To);
 
@@ -52,11 +52,14 @@ namespace Range
                 Console.WriteLine("Интервал разности 1: {0} ... {1}", differenceRange[0].From, differenceRange[0].To);
                 Console.WriteLine("Интервал разности 2: {0} ... {1}", differenceRange[1].From, differenceRange[1].To);
             }
-            else
+            else if (differenceRange.Length == 1)
             {
                 Console.WriteLine("Интервал разности: {0} ... {1}", differenceRange[0].From, differenceRange[0].To);
             }
-
+            else
+            {
+                Console.WriteLine("Интервал разности равен 0");
+            }
         }
     }
 }
