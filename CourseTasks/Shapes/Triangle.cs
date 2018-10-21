@@ -85,5 +85,24 @@ namespace Shapes
             sBuilder.Append("Высота: " + GetHeight() + "\n");
             return sBuilder.ToString();
         }
+
+        public override bool Equals(object o)
+        {
+            if (ReferenceEquals(o, this))
+            {
+                return true;
+            }
+            if (ReferenceEquals(o, null) || o.GetType() != this.GetType())
+            {
+                return false;
+            }
+            Triangle t = (Triangle)o;
+            return X1 == t.X1 && X2 == t.X2 && X3 == t.X3 && Y1 == t.Y1 && Y2 == t.Y2 && Y3 == t.Y3;
+        }
+
+        public override int GetHashCode()
+        {
+
+        }
     }
 }

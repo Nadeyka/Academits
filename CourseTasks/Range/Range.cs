@@ -54,7 +54,7 @@ namespace Range
             {
                 return new[] { new Range(From, To) };
             }
-            if (From < r2.From && To < r2.To)
+            if (From < r2.From && To <= r2.To)
             {
                 return new[] { new Range(From, r2.From) };
             }
