@@ -96,13 +96,21 @@ namespace Shapes
             {
                 return false;
             }
-            Triangle t = (Triangle)o;
-            return X1 == t.X1 && X2 == t.X2 && X3 == t.X3 && Y1 == t.Y1 && Y2 == t.Y2 && Y3 == t.Y3;
+            Triangle triangle = (Triangle)o;
+            return X1 == triangle.X1 && X2 == triangle.X2 && X3 == triangle.X3 && Y1 == triangle.Y1 && Y2 == triangle.Y2 && Y3 == triangle.Y3;
         }
 
         public override int GetHashCode()
         {
-
+            int prime = 37;
+            int hash = 1;
+            hash = prime * hash + X1.GetHashCode();
+            hash = prime * hash + X2.GetHashCode();
+            hash = prime * hash + X3.GetHashCode();
+            hash = prime * hash + Y1.GetHashCode();
+            hash = prime * hash + Y2.GetHashCode();
+            hash = prime * hash + Y3.GetHashCode();
+            return hash;
         }
     }
 }

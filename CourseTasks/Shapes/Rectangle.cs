@@ -36,5 +36,39 @@ namespace Shapes
         {
             return Width;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sBuilder = new StringBuilder("Прямоугольник\n");
+            sBuilder.Append("Площадь: " + GetArea() + "\n");
+            sBuilder.Append("Периметр: " + GetPerimeter() + "\n");
+            sBuilder.Append("Ширина: " + GetWidth() + "\n");
+            sBuilder.Append("Высота: " + GetHeight() + "\n");
+            return sBuilder.ToString();
+        }
+
+        public override bool Equals(object o)
+        {
+            if (ReferenceEquals(o, this))
+            {
+                return true;
+            }
+            if (ReferenceEquals(o, null) || o.GetType() != this.GetType())
+            {
+                return false;
+            }
+            Rectangle rectangle = (Rectangle)o;
+            return Width == rectangle.Width && Height == rectangle.Height;
+        }
+
+        public override int GetHashCode()
+        {
+            int prime = 37;
+            int hash = 1;
+            hash = prime * hash + Width.GetHashCode();
+            hash = prime * hash + Height.GetHashCode();
+            return hash;
+        }
+
     }
 }

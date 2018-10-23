@@ -26,6 +26,10 @@ namespace Shapes
 
             ShapesComparer cShape = new ShapesComparer();
             double maxArea = FindMaxArea(shapesList, cShape);
+            Console.WriteLine("Максимальная площадь: " + maxArea);
+
+            double secondPerimeter = FindSecondPerimeter(shapesList, cShape);
+            Console.WriteLine("Второй по величине периметр: " + secondPerimeter);
         }
 
         public static double FindMaxArea(List<IShape> list, ShapesComparer cShape)
@@ -39,5 +43,18 @@ namespace Shapes
             Array.Sort(areaArray, cShape);
             return areaArray[list.Count - 1];
         }
+
+        public static double FindSecondPerimeter(List<IShape> list, ShapesComparer cShape)
+        {
+            double[] perimeterArray = new double[list.Count];
+
+            for (int i = 0; i < list.Count; ++i)
+            {
+                perimeterArray[i] = list[i].GetPerimeter();
+            }
+            Array.Sort(perimeterArray, cShape);
+            return perimeterArray[1];
+        }
+
     }
 }
