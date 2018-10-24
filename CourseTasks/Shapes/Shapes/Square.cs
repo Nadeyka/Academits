@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Text;
 
-namespace Shapes
+namespace Shapes.Shapes
 {
     public class Square : IShape
     {
         public double Length { get; set; }
 
-        private int edgesQuantity = 4;
+        private const int EdgesQuantity = 4;
 
         public Square(double length)
         {
@@ -16,12 +16,12 @@ namespace Shapes
 
         public double GetArea()
         {
-            return Math.Sqrt(Length);
+            return Length * Length;
         }
 
         public double GetPerimeter()
         {
-            return Length * edgesQuantity;
+            return Length * EdgesQuantity;
         }
 
         public double GetHeight()
@@ -36,11 +36,12 @@ namespace Shapes
 
         public override string ToString()
         {
-            StringBuilder sBuilder = new StringBuilder("Квадрат\n");
-            sBuilder.Append("Площадь: " + GetArea() + "\n");
-            sBuilder.Append("Периметр: " + GetPerimeter() + "\n");
-            sBuilder.Append("Ширина: " + GetWidth() + "\n");
-            sBuilder.Append("Высота: " + GetHeight() + "\n");
+            StringBuilder sBuilder = new StringBuilder();
+            sBuilder.AppendLine("Квадрат");
+            sBuilder.AppendLine("Площадь: " + GetArea());
+            sBuilder.AppendLine("Периметр: " + GetPerimeter());
+            sBuilder.AppendLine("Ширина: " + GetWidth());
+            sBuilder.AppendLine("Высота: " + GetHeight());
             return sBuilder.ToString();
         }
 
@@ -60,9 +61,8 @@ namespace Shapes
 
         public override int GetHashCode()
         {
-            int prime = 37;
             int hash = 1;
-            hash = prime * hash + Length.GetHashCode();
+            hash = hash + Length.GetHashCode();
             return hash;
         }
 

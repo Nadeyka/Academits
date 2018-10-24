@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shapes.Comparators;
+using Shapes.Shapes;
 
 namespace Shapes
 {
@@ -24,27 +26,22 @@ namespace Shapes
                 new Triangle(50, 0, 100, 100, 85, 150)
             };
 
-            ShapesComparer cShape = new ShapesComparer();
+            AreaComparator cShape = new AreaComparator();
             double maxArea = FindMaxArea(shapesList, cShape);
             Console.WriteLine("Максимальная площадь: " + maxArea);
 
             double secondPerimeter = FindSecondPerimeter(shapesList, cShape);
             Console.WriteLine("Второй по величине периметр: " + secondPerimeter);
+            //Console.WriteLine((shapesList[3].ToString()));
         }
 
-        public static double FindMaxArea(List<IShape> list, ShapesComparer cShape)
+        public static double FindMaxArea(List<IShape> list, AreaComparator cShape)
         {
-            double[] areaArray = new double[list.Count];
-
-            for (int i = 0; i < list.Count; ++i)
-            {
-                areaArray[i] = list[i].GetArea();
-            }
-            Array.Sort(areaArray, cShape);
-            return areaArray[list.Count - 1];
+            Array.Sort(list.ToArray(), cShape);
+            //return areaArray[list.Count - 1];
         }
 
-        public static double FindSecondPerimeter(List<IShape> list, ShapesComparer cShape)
+        public static double FindSecondPerimeter(List<IShape> list, AreaComparator cShape)
         {
             double[] perimeterArray = new double[list.Count];
 

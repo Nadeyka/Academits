@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shapes
+namespace Shapes.Shapes
 {
     public class Rectangle : IShape
     {
@@ -39,11 +39,12 @@ namespace Shapes
 
         public override string ToString()
         {
-            StringBuilder sBuilder = new StringBuilder("Прямоугольник\n");
-            sBuilder.Append("Площадь: " + GetArea() + "\n");
-            sBuilder.Append("Периметр: " + GetPerimeter() + "\n");
-            sBuilder.Append("Ширина: " + GetWidth() + "\n");
-            sBuilder.Append("Высота: " + GetHeight() + "\n");
+            StringBuilder sBuilder = new StringBuilder();
+            sBuilder.AppendLine("Прямоугольник");
+            sBuilder.AppendLine("Площадь: " + GetArea());
+            sBuilder.AppendLine("Периметр: " + GetPerimeter());
+            sBuilder.AppendLine("Ширина: " + GetWidth());
+            sBuilder.AppendLine("Высота: " + GetHeight());
             return sBuilder.ToString();
         }
 

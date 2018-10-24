@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shapes
+namespace Shapes.Shapes
 {
     class Triangle : IShape
     {
@@ -44,9 +44,9 @@ namespace Shapes
 
         public double GetPerimeter()
         {
-            double side1 = Math.Sqrt(Math.Abs(Math.Pow(X2 - X1, 2) - Math.Pow(Y2 - Y1, 2)));
-            double side2 = Math.Sqrt(Math.Abs(Math.Pow(X3 - X1, 2) - Math.Pow(Y3 - Y1, 2)));
-            double side3 = Math.Sqrt(Math.Abs(Math.Pow(X3 - X2, 2) - Math.Pow(Y3 - Y2, 2)));
+            double side1 = GetSideLength(X1, Y1, X2, Y2);
+            double side2 = GetSideLength(X1, Y1, X3, Y3);
+            double side3 = GetSideLength(X2, Y2, X3, Y3);
             return side1 + side2 + side3;
         }
 
@@ -76,13 +76,19 @@ namespace Shapes
             return min;
         }
 
+        private double GetSideLength(double topX1, double topY1, double topX2, double topY2)
+        {
+            return Math.Sqrt(Math.Abs(Math.Pow(topX2 - topX1, 2) - Math.Pow(topY2 - topY1, 2)));
+        }
+
         public override string ToString()
         {
-            StringBuilder sBuilder = new StringBuilder("Треугольник\n");
-            sBuilder.Append("Площадь: " + GetArea() + "\n");
-            sBuilder.Append("Периметр: " + GetPerimeter() + "\n");
-            sBuilder.Append("Ширина: " + GetWidth() + "\n");
-            sBuilder.Append("Высота: " + GetHeight() + "\n");
+            StringBuilder sBuilder = new StringBuilder();
+            sBuilder.AppendLine("Треугольник");
+            sBuilder.AppendLine("Площадь: " + GetArea());
+            sBuilder.AppendLine("Периметр: " + GetPerimeter());
+            sBuilder.AppendLine("Ширина: " + GetWidth());
+            sBuilder.AppendLine("Высота: " + GetHeight());
             return sBuilder.ToString();
         }
 

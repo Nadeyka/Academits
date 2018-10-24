@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shapes
+namespace Shapes.Shapes
 {
     public class Circle : IShape
     {
@@ -37,11 +37,12 @@ namespace Shapes
 
         public override string ToString()
         {
-            StringBuilder sBuilder = new StringBuilder("Окружность\n");
-            sBuilder.Append("Площадь: " + GetArea() + "\n");
-            sBuilder.Append("Периметр: " + GetPerimeter() + "\n");
-            sBuilder.Append("Ширина: " + GetWidth() + "\n");
-            sBuilder.Append("Высота: " + GetHeight() + "\n");
+            StringBuilder sBuilder = new StringBuilder();
+            sBuilder.AppendLine("Окружность");
+            sBuilder.AppendLine("Площадь: " + GetArea());
+            sBuilder.AppendLine("Периметр: " + GetPerimeter());
+            sBuilder.AppendLine("Ширина: " + GetWidth());
+            sBuilder.AppendLine("Высота: " + GetHeight());
             return sBuilder.ToString();
         }
 
@@ -61,9 +62,8 @@ namespace Shapes
 
         public override int GetHashCode()
         {
-            int prime = 37;
             int hash = 1;
-            hash = prime * hash + Radius.GetHashCode();
+            hash = hash + Radius.GetHashCode();
             return hash;
         }
 
