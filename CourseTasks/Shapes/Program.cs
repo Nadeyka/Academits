@@ -27,30 +27,25 @@ namespace Shapes
             };
 
             AreaComparator cShape = new AreaComparator();
-            double maxArea = FindMaxArea(shapesList, cShape);
-            Console.WriteLine("Максимальная площадь: " + maxArea);
+            IShape maxArea = FindMaxArea(shapesList, cShape);
+            Console.WriteLine("Фигура с максимальной площадью:");
+            Console.WriteLine(maxArea.ToString());
 
-            double secondPerimeter = FindSecondPerimeter(shapesList, cShape);
-            Console.WriteLine("Второй по величине периметр: " + secondPerimeter);
-            //Console.WriteLine((shapesList[3].ToString()));
+            IShape secondPerimeter = FindSecondPerimeter(shapesList, cShape);
+            Console.WriteLine("Фигура со вторым по величине периметром:");
+            Console.WriteLine(secondPerimeter.ToString());
         }
 
-        public static double FindMaxArea(List<IShape> list, AreaComparator cShape)
+        public static IShape FindMaxArea(List<IShape> list, AreaComparator cShape)
         {
             Array.Sort(list.ToArray(), cShape);
-            //return areaArray[list.Count - 1];
+            return list[list.Count - 1];
         }
 
-        public static double FindSecondPerimeter(List<IShape> list, AreaComparator cShape)
+        public static IShape FindSecondPerimeter(List<IShape> list, AreaComparator cShape)
         {
-            double[] perimeterArray = new double[list.Count];
-
-            for (int i = 0; i < list.Count; ++i)
-            {
-                perimeterArray[i] = list[i].GetPerimeter();
-            }
-            Array.Sort(perimeterArray, cShape);
-            return perimeterArray[1];
+            Array.Sort(list.ToArray(), cShape);
+            return list[1];
         }
 
     }

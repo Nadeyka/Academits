@@ -7,7 +7,7 @@ using Shapes.Shapes;
 
 namespace Shapes.Comparators
 {
-    internal class PerimeterComparator
+    internal class PerimeterComparator : IComparer<IShape>
     {
         public int Compare(IShape shape1, IShape shape2)
         {

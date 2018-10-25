@@ -27,7 +27,7 @@ namespace Shapes.Shapes
 
         public double GetArea()
         {
-            return Math.PI * Math.Sqrt(Radius);
+            return Math.PI * Radius * Radius;
         }
 
         public double GetPerimeter()
@@ -39,10 +39,7 @@ namespace Shapes.Shapes
         {
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.AppendLine("Окружность");
-            sBuilder.AppendLine("Площадь: " + GetArea());
-            sBuilder.AppendLine("Периметр: " + GetPerimeter());
-            sBuilder.AppendLine("Ширина: " + GetWidth());
-            sBuilder.AppendLine("Высота: " + GetHeight());
+            sBuilder.AppendLine("Радиус = " + Radius);
             return sBuilder.ToString();
         }
 
@@ -62,9 +59,7 @@ namespace Shapes.Shapes
 
         public override int GetHashCode()
         {
-            int hash = 1;
-            hash = hash + Radius.GetHashCode();
-            return hash;
+            return (int)Radius;
         }
 
     }

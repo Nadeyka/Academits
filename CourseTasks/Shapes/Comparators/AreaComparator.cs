@@ -7,7 +7,7 @@ using Shapes.Shapes;
 
 namespace Shapes.Comparators
 {
-    internal class AreaComparator
+    internal class AreaComparator: IComparer<IShape>
     {
         public int Compare(IShape shape1, IShape shape2)
         {

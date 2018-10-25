@@ -41,10 +41,8 @@ namespace Shapes.Shapes
         {
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.AppendLine("Прямоугольник");
-            sBuilder.AppendLine("Площадь: " + GetArea());
-            sBuilder.AppendLine("Периметр: " + GetPerimeter());
-            sBuilder.AppendLine("Ширина: " + GetWidth());
-            sBuilder.AppendLine("Высота: " + GetHeight());
+            sBuilder.AppendLine("Ширина: " + Width);
+            sBuilder.AppendLine("Высота: " + Height);
             return sBuilder.ToString();
         }
 

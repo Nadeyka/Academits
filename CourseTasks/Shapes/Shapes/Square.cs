@@ -38,10 +38,7 @@ namespace Shapes.Shapes
         {
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.AppendLine("Квадрат");
-            sBuilder.AppendLine("Площадь: " + GetArea());
-            sBuilder.AppendLine("Периметр: " + GetPerimeter());
-            sBuilder.AppendLine("Ширина: " + GetWidth());
-            sBuilder.AppendLine("Высота: " + GetHeight());
+            sBuilder.AppendLine("Сторона = " + Length);
             return sBuilder.ToString();
         }
 
@@ -61,10 +58,7 @@ namespace Shapes.Shapes
 
         public override int GetHashCode()
         {
-            int hash = 1;
-            hash = hash + Length.GetHashCode();
-            return hash;
+            return (int)Length;
         }
-
     }
 }

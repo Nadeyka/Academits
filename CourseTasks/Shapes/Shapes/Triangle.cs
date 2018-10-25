@@ -50,7 +50,7 @@ namespace Shapes.Shapes
             return side1 + side2 + side3;
         }
 
-        private double GetMax(double[] vertex)
+        private static double GetMax(double[] vertex)
         {
             double max = vertex[0];
             foreach (double e in vertex)
@@ -63,7 +63,7 @@ namespace Shapes.Shapes
             return max;
         }
 
-        private double GetMin(double[] vertex)
+        private static double GetMin(double[] vertex)
         {
             double min = vertex[0];
             foreach (double e in vertex)
@@ -76,7 +76,7 @@ namespace Shapes.Shapes
             return min;
         }
 
-        private double GetSideLength(double topX1, double topY1, double topX2, double topY2)
+        private static double GetSideLength(double topX1, double topY1, double topX2, double topY2)
         {
             return Math.Sqrt(Math.Abs(Math.Pow(topX2 - topX1, 2) - Math.Pow(topY2 - topY1, 2)));
         }
@@ -85,10 +85,9 @@ namespace Shapes.Shapes
         {
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.AppendLine("Треугольник");
-            sBuilder.AppendLine("Площадь: " + GetArea());
-            sBuilder.AppendLine("Периметр: " + GetPerimeter());
-            sBuilder.AppendLine("Ширина: " + GetWidth());
-            sBuilder.AppendLine("Высота: " + GetHeight());
+            sBuilder.AppendLine("Вершина 1: X1 = " + X1 + " Y1 = " + Y1);
+            sBuilder.AppendLine("Вершина 2: X2 = " + X2 + " Y2 = " + Y2);
+            sBuilder.AppendLine("Вершина 3: X3 = " + X3 + " Y3 = " + Y3);
             return sBuilder.ToString();
         }
 
