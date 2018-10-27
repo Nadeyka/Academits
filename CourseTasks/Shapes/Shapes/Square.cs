@@ -58,7 +58,7 @@ namespace Shapes.Shapes
 
         public override int GetHashCode()
         {
-            return (int)Length;
+            return Length.GetHashCode();
         }
     }
 }

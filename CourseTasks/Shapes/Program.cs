@@ -45,7 +45,7 @@ namespace Shapes
         public static IShape FindSecondPerimeter(List<IShape> list, AreaComparator cShape)
         {
             Array.Sort(list.ToArray(), cShape);
-            return list[1];
+            return list[list.Count - 2];
         }
 
     }

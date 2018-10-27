@@ -78,7 +78,7 @@ namespace Shapes.Shapes
 
         private static double GetSideLength(double topX1, double topY1, double topX2, double topY2)
         {
-            return Math.Sqrt(Math.Abs(Math.Pow(topX2 - topX1, 2) - Math.Pow(topY2 - topY1, 2)));
+            return Math.Sqrt(Math.Pow(topX2 - topX1, 2) + Math.Pow(topY2 - topY1, 2));
         }
 
         public override string ToString()

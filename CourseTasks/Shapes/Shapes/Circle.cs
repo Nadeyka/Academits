@@ -59,7 +59,7 @@ namespace Shapes.Shapes
 
         public override int GetHashCode()
         {
-            return (int)Radius;
+            return Radius.GetHashCode();
         }
 
     }
