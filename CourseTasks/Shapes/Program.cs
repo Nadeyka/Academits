@@ -26,25 +26,26 @@ namespace Shapes
                 new Triangle(50, 0, 100, 100, 85, 150)
             };
 
-            AreaComparator cShape = new AreaComparator();
-            IShape maxArea = FindMaxArea(shapesList, cShape);
+            AreaComparator areaComparator = new AreaComparator();
+            IShape maxArea = SearchMaxAreaShape(shapesList, areaComparator);
             Console.WriteLine("Фигура с максимальной площадью:");
             Console.WriteLine(maxArea.ToString());
 
-            IShape secondPerimeter = FindSecondPerimeter(shapesList, cShape);
+            PerimeterComparator perimeterComparator = new PerimeterComparator();
+            IShape secondPerimeter = SearchSecondPerimeterShape(shapesList, perimeterComparator);
             Console.WriteLine("Фигура со вторым по величине периметром:");
             Console.WriteLine(secondPerimeter.ToString());
         }
 
-        public static IShape FindMaxArea(List<IShape> list, AreaComparator cShape)
+        public static IShape SearchMaxAreaShape(List<IShape> list, AreaComparator areaComparator)
         {
-            Array.Sort(list.ToArray(), cShape);
+            Array.Sort(list.ToArray(), areaComparator);
             return list[list.Count - 1];
         }
 
-        public static IShape FindSecondPerimeter(List<IShape> list, AreaComparator cShape)
+        public static IShape SearchSecondPerimeterShape(List<IShape> list, PerimeterComparator perimeterComparator)
         {
-            Array.Sort(list.ToArray(), cShape);
+            Array.Sort(list.ToArray(), perimeterComparator);
             return list[list.Count - 2];
         }
 
