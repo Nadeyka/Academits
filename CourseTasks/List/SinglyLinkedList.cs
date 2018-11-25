@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,46 +9,45 @@ namespace List
 {
     class SinglyLinkedList<T>
     {
-        private ListItem<T> Head { get; set; }
-        private int count;
+        public ListItem<T> Head { get; set; }
+        public int Count { get; private set; }
 
-        public SinglyLinkedList(ListItem<T> head)
+        public SinglyLinkedList()
         {
-            Head = head;
-            count = 0;
-        }
-
-        public int GetListSize()
-        {
-            return count;
+            Count = 0;
         }
 
         public T GetFirstElement()
         {
+            if (Count == 0)
+            {
+                throw new Exception("Список пуст");
+            }
             return Head.Data;
         }
 
         public T GetElementByIndex(int index)
         {
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException("Элемента с таким индексом нет в списке");
+            }
             ListItem<T> item = Head;
             int i = 0;
-            while (i < index)
-            {
-                item = item.Next;
-                ++i;
-            }
+            item = IterateItem(index, i, item);
             return item.Data;
         }
 
         public T SetElementByIndex(int index, T newData)
         {
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException("Элемента с таким индексом нет в списке");
+            }
+
             ListItem<T> item = Head;
             int i = 0;
-            while (i < index)
-            {
-                item = item.Next;
-                ++i;
-            }
+            item = IterateItem(index, i, item);
 
             T oldData = item.Data;
             item.Data = newData;
@@ -58,54 +58,63 @@ namespace List
         {
             ListItem<T> p = new ListItem<T>(data, Head);
             Head = p;
-            count++;
+            Count++;
         }
 
         public T DeleteElementAtBegin()
         {
+            if (Count == 0)
+            {
+                throw new Exception("Список пуст");
+            }
             T deletedData = Head.Data;
             Head = Head.Next;
-            count--;
+            Count--;
             return deletedData;
         }
 
         public T DeleteElementByIndex(int index)
         {
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException("Элемента с таким индексом нет в списке");
+            }
             ListItem<T> item = Head;
             int i = 0;
-            while (i < index)
-            {
-                item = item.Next;
-                ++i;
-            }
+            item = IterateItem(index, i, item);
             T oldData = item.Data;
             item.Next = item.Next.Next;
-            count--;
+            Count--;
             return oldData;
         }
 
         public void InsertElementByIndex(int index, T data)
         {
+            if (index > Count)
+            {
+                throw new IndexOutOfRangeException("Элемента с таким индексом нет в списке");
+            }
             ListItem<T> item = Head;
             int i = 0;
-            while (i < index - 1)
-            {
-                item = item.Next;
-                ++i;
-            }
+            item = IterateItem(index - 1, i, item);
             ListItem<T> p = new ListItem<T>(data, item.Next);
             item.Next = p;
-            count++;
+            Count++;
         }
 
         public bool DeleteElementByValue(T value)
         {
+            if (Count == 0)
+            {
+                throw new Exception("Список пуст");
+            }
+
             for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = p.Next)
             {
                 if (p.Data.Equals(value))
                 {
                     prev.Next = p.Next;
-                    count--;
+                    Count--;
                     return true;
                 }
             }
@@ -114,11 +123,48 @@ namespace List
 
         public void InvertList()
         {
+            if (Count == 0)
+            {
+                throw new Exception("Список пуст");
+            }
+            //for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = p.Next)
+            //for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = prev.Next)
+            ListItem<T> p = Head.Next;
+            ListItem<T> prev = Head;
+            while (p!=null)
+            {
+                Console.WriteLine("p: "+p.Data);
+                Console.WriteLine("prev: "+prev.Data);
+                p.Next = prev;
+                prev = p;
+
+            }
+          // Head = null;
+        }
+
+        public void CopyList()
+        {
+            if (Count == 0)
+            {
+                throw new Exception("Список пуст");
+            }
+
             for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = p.Next)
             {
                 p.Next = prev;
             }
+
+            Head = null;
         }
 
+        private ListItem<T> IterateItem(int index, int i, ListItem<T> item)
+        {
+            while (i < index)
+            {
+                item = item.Next;
+                ++i;
+            }
+            return item;
+        }
     }
 }
