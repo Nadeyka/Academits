@@ -127,22 +127,20 @@ namespace List
             {
                 throw new Exception("Список пуст");
             }
-            //for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = p.Next)
-            //for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = prev.Next)
-            ListItem<T> p = Head.Next;
-            ListItem<T> prev = Head;
-            while (p!=null)
+
+            ListItem<T> p = Head;
+            ListItem<T> prev = null;
+            while (p != null)
             {
-                Console.WriteLine("p: "+p.Data);
-                Console.WriteLine("prev: "+prev.Data);
+                ListItem<T> q = p.Next;
                 p.Next = prev;
                 prev = p;
-
+                Head = p;
+                p = q;
             }
-          // Head = null;
         }
 
-        public void CopyList()
+        public SinglyLinkedList<T> CopyList()
         {
             if (Count == 0)
             {

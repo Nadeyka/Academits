@@ -16,23 +16,28 @@ namespace List
                 Head = head
             };
             intList.InsertElementAtBegin(2);
+
             intList.InsertElementByIndex(1, 7);
+
             Console.WriteLine("Размер списка: " + intList.Count);
             Console.WriteLine("Первый элемент: " + intList.GetFirstElement());
             Console.WriteLine("Элемент по индексу 1: " + intList.GetElementByIndex(1));
+
             intList.SetElementByIndex(1, 8);
             Console.WriteLine("Элемент по индексу 1 после изменения: " + intList.GetElementByIndex(1));
+
             intList.DeleteElementByValue(8);
             intList.DeleteElementAtBegin();
             Console.WriteLine("Размер списка: " + intList.Count);
+
             intList.InsertElementAtBegin(16);
             intList.InsertElementByIndex(1, 17);
             intList.InsertElementByIndex(2, 18);
-            //intList.InvertList();
             for (ListItem<int> p = intList.Head; p != null; p = p.Next)
             {
                 Console.WriteLine(p.Data);
             }
+
             intList.InvertList();
             Console.WriteLine("Инвертированный список:");
             for (ListItem<int> p = intList.Head; p != null; p = p.Next)
@@ -40,7 +45,13 @@ namespace List
                 Console.WriteLine(p.Data);
             }
 
-            //intList.DeleteElementByIndex(2);
+            intList.DeleteElementByIndex(2);
+
+            SinglyLinkedList<int> intListCopy = intList.CopyList();
+            for (ListItem<int> p = intListCopy.Head; p != null; p = p.Next)
+            {
+                Console.WriteLine(p.Data);
+            }
         }
     }
 }

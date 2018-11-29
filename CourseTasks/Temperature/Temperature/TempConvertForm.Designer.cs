@@ -1,6 +1,6 @@
 ﻿namespace Temperature
 {
-    partial class Form1
+    partial class TempConvertForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tbInputTemp = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblInputTemp = new System.Windows.Forms.Label();
             this.btnTempConvert = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,23 +40,23 @@
             // 
             // tbInputTemp
             // 
-            this.tbInputTemp.Location = new System.Drawing.Point(192, 23);
-            this.tbInputTemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbInputTemp.Location = new System.Drawing.Point(177, 26);
+            this.tbInputTemp.Margin = new System.Windows.Forms.Padding(4);
             this.tbInputTemp.Name = "tbInputTemp";
             this.tbInputTemp.Size = new System.Drawing.Size(88, 23);
             this.tbInputTemp.TabIndex = 0;
             this.tbInputTemp.TextChanged += new System.EventHandler(this.tbInputTemp_TextChanged);
             // 
-            // label1
+            // lblInputTemp
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(13, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Введите температуру:";
+            this.lblInputTemp.AutoSize = true;
+            this.lblInputTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblInputTemp.Location = new System.Drawing.Point(13, 26);
+            this.lblInputTemp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInputTemp.Name = "lblInputTemp";
+            this.lblInputTemp.Size = new System.Drawing.Size(156, 17);
+            this.lblInputTemp.TabIndex = 1;
+            this.lblInputTemp.Text = "Введите температуру:";
             // 
             // btnTempConvert
             // 
@@ -83,7 +83,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(13, 132);
+            this.label3.Location = new System.Drawing.Point(130, 93);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 17);
@@ -94,7 +94,7 @@
             // 
             this.labelResult.AutoSize = true;
             this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelResult.Location = new System.Drawing.Point(101, 132);
+            this.labelResult.Location = new System.Drawing.Point(209, 93);
             this.labelResult.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(66, 17);
@@ -108,7 +108,7 @@
             "° Цельсия",
             "° Кельвина",
             "° Фаренгейта"});
-            this.cbFromTemp.Location = new System.Drawing.Point(287, 23);
+            this.cbFromTemp.Location = new System.Drawing.Point(272, 26);
             this.cbFromTemp.Name = "cbFromTemp";
             this.cbFromTemp.Size = new System.Drawing.Size(122, 24);
             this.cbFromTemp.TabIndex = 8;
@@ -120,27 +120,27 @@
             "° Цельсия",
             "° Кельвина",
             "° Фаренгейта"});
-            this.cbToTemp.Location = new System.Drawing.Point(192, 56);
+            this.cbToTemp.Location = new System.Drawing.Point(177, 56);
             this.cbToTemp.Name = "cbToTemp";
             this.cbToTemp.Size = new System.Drawing.Size(120, 24);
             this.cbToTemp.TabIndex = 9;
             // 
-            // Form1
+            // TempConvertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 192);
+            this.ClientSize = new System.Drawing.Size(420, 121);
             this.Controls.Add(this.cbToTemp);
             this.Controls.Add(this.cbFromTemp);
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnTempConvert);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblInputTemp);
             this.Controls.Add(this.tbInputTemp);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "TempConvertForm";
             this.Text = "Перевод температур";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,7 +150,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox tbInputTemp;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblInputTemp;
         private System.Windows.Forms.Button btnTempConvert;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
