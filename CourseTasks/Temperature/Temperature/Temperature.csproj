@@ -45,7 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TempConvert.cs" />
+    <Compile Include="CelsiumToKelvinConverter.cs" />
+    <Compile Include="CelsiumToFahrenheitConverter.cs" />
+    <Compile Include="FahrenheitToCelsiumConverter.cs" />
+    <Compile Include="FahrenheitToKelvinConverter.cs" />
+    <Compile Include="KelvinToCelsiumConverter.cs" />
+    <Compile Include="KelvinToFahrenheitConverter.cs" />
+    <Compile Include="ITemperatureConverter.cs" />
     <Compile Include="TempConvertForm.cs">
       <SubType>Form</SubType>
     </Compile>
