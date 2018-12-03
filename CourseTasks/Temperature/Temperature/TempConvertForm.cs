@@ -44,6 +44,8 @@ namespace Temperature
         private void button1_Click(object sender, EventArgs e)
         {
             labelResult.Text = "градусов";
+            KelvinScale kelvinScale = new KelvinScale();
+            FahrenheitScale fahrenheitScale = new FahrenheitScale();
             switch (cbFromTemp.SelectedIndex)
             {
                 case 0:
@@ -53,12 +55,10 @@ namespace Temperature
                             labelResult.Text = tbInputTemp.Text + " " + labelResult.Text + " Цельсия";
                             break;
                         case 1:
-                            CelsiumToKelvinConverter celsiumToKelvin = new CelsiumToKelvinConverter();
-                            labelResult.Text = celsiumToKelvin.ConvertTemp(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Кельвина";
+                            labelResult.Text = kelvinScale.ConvertTempFromCelsium(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Кельвина";
                             break;
                         case 2:
-                            CelsiumToFahrenheitConverter celsiumToFahrenheit = new CelsiumToFahrenheitConverter();
-                            labelResult.Text = celsiumToFahrenheit.ConvertTemp(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Фаренгейта";
+                            labelResult.Text = fahrenheitScale.ConvertTempFromCelsium(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Фаренгейта";
                             break;
                     }
                     break;
@@ -66,15 +66,14 @@ namespace Temperature
                     switch (cbToTemp.SelectedIndex)
                     {
                         case 0:
-                            KelvinToCelsiumConverter kelvinToCelsium = new KelvinToCelsiumConverter();
-                            labelResult.Text = kelvinToCelsium.ConvertTemp(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Цельсия";
+                            labelResult.Text = kelvinScale.ConvertTempToCelsium(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Цельсия";
                             break;
                         case 1:
                             labelResult.Text = tbInputTemp.Text + " " + labelResult.Text + " Кельвина";
                             break;
                         case 2:
-                            KelvinToFahrenheitConverter kelvinToFahrenheit = new KelvinToFahrenheitConverter();
-                            labelResult.Text = kelvinToFahrenheit.ConvertTemp(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Фаренгейта";
+                            double fahrenheitConst = 32;
+                            labelResult.Text = kelvinScale.ConvertTempToCelsium(Convert.ToDouble(tbInputTemp.Text)) * 9 / 5 + fahrenheitConst + " " + labelResult.Text + " Фаренгейта";
                             break;
                     }
                     break;
@@ -82,12 +81,11 @@ namespace Temperature
                     switch (cbToTemp.SelectedIndex)
                     {
                         case 0:
-                            FahrenheitToCelsiumConverter fahrenheitToCelsium = new FahrenheitToCelsiumConverter();
-                            labelResult.Text = fahrenheitToCelsium.ConvertTemp(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Цельсия";
+                            labelResult.Text = fahrenheitScale.ConvertTempToCelsium(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Цельсия";
                             break;
                         case 1:
-                            FahrenheitToKelvinConverter fahrenheitToKelvin = new FahrenheitToKelvinConverter();
-                            labelResult.Text = fahrenheitToKelvin.ConvertTemp(Convert.ToDouble(tbInputTemp.Text)) + " " + labelResult.Text + " Кельвина";
+                            double kelvinConst = 273.15;
+                            labelResult.Text = fahrenheitScale.ConvertTempToCelsium(Convert.ToDouble(tbInputTemp.Text)) + kelvinConst + " " + labelResult.Text + " Кельвина";
                             break;
                         case 2:
                             labelResult.Text = tbInputTemp.Text + " " + labelResult.Text + " Фаренгейта";

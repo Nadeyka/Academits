@@ -8,6 +8,7 @@ namespace Temperature
 {
     public interface ITemperatureConverter
     {
-        double ConvertTemp(double degree);
+        double ConvertTempToCelsium(double degree);
+        double ConvertTempFromCelsium(double degree);
     }
 }
