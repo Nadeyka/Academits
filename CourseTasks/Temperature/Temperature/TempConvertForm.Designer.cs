@@ -104,10 +104,6 @@
             // cbFromTemp
             // 
             this.cbFromTemp.FormattingEnabled = true;
-            this.cbFromTemp.Items.AddRange(new object[] {
-            "° Цельсия",
-            "° Кельвина",
-            "° Фаренгейта"});
             this.cbFromTemp.Location = new System.Drawing.Point(272, 26);
             this.cbFromTemp.Name = "cbFromTemp";
             this.cbFromTemp.Size = new System.Drawing.Size(122, 24);
@@ -116,10 +112,6 @@
             // cbToTemp
             // 
             this.cbToTemp.FormattingEnabled = true;
-            this.cbToTemp.Items.AddRange(new object[] {
-            "° Цельсия",
-            "° Кельвина",
-            "° Фаренгейта"});
             this.cbToTemp.Location = new System.Drawing.Point(177, 56);
             this.cbToTemp.Name = "cbToTemp";
             this.cbToTemp.Size = new System.Drawing.Size(120, 24);

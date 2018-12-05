@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Temperature
 {
-    class KelvinScale : ITemperatureConverter
+    class KelvinScale : IScale
     {
-        double kelvinConst = 273.15;
+        public const double kelvinConst = 273.15;
+        //public const string scaleName = "° Кельвина";
 
         public double ConvertTempToCelsium(double degree)
         {

@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Temperature
 {
-    class FahrenheitScale : ITemperatureConverter
+    class FahrenheitScale : IScale
     {
-        double fahrenheitConst = 32;
+        public const double fahrenheitConst = 32;
+        //public const string scaleName = "° Фаренгейта";
 
         public double ConvertTempToCelsium(double degree)
         {
-            return Math.Round((degree - fahrenheitConst) * 5 / 9, 3);
+            return (degree - fahrenheitConst) * 5 / 9;
         }
 
         public double ConvertTempFromCelsium(double degree)
         {
-            return Math.Round(degree * 9 / 5 + fahrenheitConst, 3);
+            return degree * 9 / 5 + fahrenheitConst;
         }
-
     }
 }

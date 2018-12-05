@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Temperature
 {
-    public interface ITemperatureConverter
+    public interface IScale
     {
         double ConvertTempToCelsium(double degree);
         double ConvertTempFromCelsium(double degree);

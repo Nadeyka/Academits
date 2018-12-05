@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Temperature
 {
-    public class CelsiumScale : ITemperatureConverter
+    public class CelsiumScale : IScale
     {
+        //public const string scaleName = "° Цельсия";
+
         public double ConvertTempToCelsium(double degree)
         {
             return degree;
