@@ -8,6 +8,7 @@ namespace Temperature
 {
     public interface IScale
     {
+        string scaleName { get; set; }
         double ConvertTempToCelsium(double degree);
         double ConvertTempFromCelsium(double degree);
     }

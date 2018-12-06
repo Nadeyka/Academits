@@ -9,7 +9,12 @@ namespace Temperature
     class KelvinScale : IScale
     {
         public const double kelvinConst = 273.15;
-        //public const string scaleName = "° Кельвина";
+        public string scaleName { get; set; }
+
+        public KelvinScale()
+        {
+            scaleName = "° Кельвина";
+        }
 
         public double ConvertTempToCelsium(double degree)
         {

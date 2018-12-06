@@ -9,7 +9,12 @@ namespace Temperature
     class FahrenheitScale : IScale
     {
         public const double fahrenheitConst = 32;
-        //public const string scaleName = "° Фаренгейта";
+        public string scaleName { get; set; }
+
+        public FahrenheitScale()
+        {
+            scaleName = "° Фаренгейта";
+        }
 
         public double ConvertTempToCelsium(double degree)
         {
