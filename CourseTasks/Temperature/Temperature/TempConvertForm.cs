@@ -15,8 +15,14 @@ namespace Temperature
         public TempConvertForm()
         {
             InitializeComponent();
-            IScale[] scaleFromList = { new CelsiumScale(), new KelvinScale(), new FahrenheitScale() };
-            IScale[] scaleToList = { new CelsiumScale(), new KelvinScale(), new FahrenheitScale() };
+            IScale[] scaleList = { new CelsiumScale(), new KelvinScale(), new FahrenheitScale() };
+            string[] scaleFromList = new string[scaleList.Length];
+            string[] scaleToList = new string[scaleList.Length];
+            for (int i = 0; i < scaleList.Length; ++i)
+            {
+                scaleFromList[i] = scaleList[i].scaleName;
+                scaleToList[i] = scaleList[i].scaleName;
+            }
             cbToTemp.DataSource = scaleToList;
             cbFromTemp.DataSource = scaleFromList;
             cbFromTemp.SelectedIndex = 0;
@@ -48,8 +54,20 @@ namespace Temperature
         private void button1_Click(object sender, EventArgs e)
         {
             labelResult.Text = "градусов";
-            IScale fromTemp = (IScale)cbFromTemp.SelectedItem;
-            IScale toTemp = (IScale)cbToTemp.SelectedItem;
+            IScale[] scaleList = { new CelsiumScale(), new KelvinScale(), new FahrenheitScale() };
+            IScale fromTemp = scaleList[0];
+            IScale toTemp = scaleList[0];
+            foreach (IScale eScale in scaleList)
+            {
+                if (eScale.scaleName == (string)cbFromTemp.SelectedItem)
+                {
+                    fromTemp = eScale;
+                }
+                else if (eScale.scaleName == (string)cbToTemp.SelectedItem)
+                {
+                    toTemp = eScale;
+                }
+            }
             labelResult.Text = toTemp.ConvertTempFromCelsium(fromTemp.ConvertTempToCelsium(Convert.ToDouble(tbInputTemp.Text))) + " " + labelResult.Text;
         }
     }
