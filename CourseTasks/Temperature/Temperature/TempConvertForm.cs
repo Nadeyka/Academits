@@ -20,8 +20,8 @@ namespace Temperature
             string[] scaleToList = new string[scaleList.Length];
             for (int i = 0; i < scaleList.Length; ++i)
             {
-                scaleFromList[i] = scaleList[i].scaleName;
-                scaleToList[i] = scaleList[i].scaleName;
+                scaleFromList[i] = scaleList[i].ScaleName;
+                scaleToList[i] = scaleList[i].ScaleName;
             }
             cbToTemp.DataSource = scaleToList;
             cbFromTemp.DataSource = scaleFromList;
@@ -51,24 +51,16 @@ namespace Temperature
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTempConvert_Click(object sender, EventArgs e)
         {
             labelResult.Text = "градусов";
             IScale[] scaleList = { new CelsiumScale(), new KelvinScale(), new FahrenheitScale() };
             IScale fromTemp = scaleList[0];
             IScale toTemp = scaleList[0];
-            foreach (IScale eScale in scaleList)
-            {
-                if (eScale.scaleName == (string)cbFromTemp.SelectedItem)
-                {
-                    fromTemp = eScale;
-                }
-                else if (eScale.scaleName == (string)cbToTemp.SelectedItem)
-                {
-                    toTemp = eScale;
-                }
-            }
-            labelResult.Text = toTemp.ConvertTempFromCelsium(fromTemp.ConvertTempToCelsium(Convert.ToDouble(tbInputTemp.Text))) + " " + labelResult.Text;
+            string selectedFromScale = (string)cbFromTemp.SelectedItem;
+            string selectedToScale = (string)cbToTemp.SelectedItem;
+            double temperatureValue = Convert.ToDouble(tbInputTemp.Text);
+            labelResult.Text = TemperatureConverter.ConvertTemperature(scaleList, fromTemp, toTemp, selectedFromScale, selectedToScale, temperatureValue) + " " + labelResult.Text;
         }
     }
 }

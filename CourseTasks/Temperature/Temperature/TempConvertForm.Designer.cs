@@ -66,7 +66,7 @@
             this.btnTempConvert.TabIndex = 2;
             this.btnTempConvert.Text = "Перевести";
             this.btnTempConvert.UseVisualStyleBackColor = true;
-            this.btnTempConvert.Click += new System.EventHandler(this.button1_Click);
+            this.btnTempConvert.Click += new System.EventHandler(this.btnTempConvert_Click);
             // 
             // label2
             // 

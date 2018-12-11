@@ -9,11 +9,9 @@ namespace Temperature
 {
     public class CelsiumScale : IScale
     {
-        public string scaleName { get; set; }
-
-        public CelsiumScale()
+        public string ScaleName
         {
-            scaleName = "° Цельсия";
+            get { return "° Цельсия"; }
         }
 
         public double ConvertTempToCelsium(double degree)

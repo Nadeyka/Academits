@@ -8,22 +8,20 @@ namespace Temperature
 {
     class FahrenheitScale : IScale
     {
-        public const double fahrenheitConst = 32;
-        public string scaleName { get; set; }
-
-        public FahrenheitScale()
+        public const double FahrenheitConst = 32;
+        public string ScaleName
         {
-            scaleName = "° Фаренгейта";
+            get { return "° Фаренгейта"; }
         }
 
         public double ConvertTempToCelsium(double degree)
         {
-            return (degree - fahrenheitConst) * 5 / 9;
+            return (degree - FahrenheitConst) * 5 / 9;
         }
 
         public double ConvertTempFromCelsium(double degree)
         {
-            return degree * 9 / 5 + fahrenheitConst;
+            return degree * 9 / 5 + FahrenheitConst;
         }
     }
 }
