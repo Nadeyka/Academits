@@ -46,8 +46,14 @@ namespace List
             }
 
             intList.DeleteElementByIndex(2);
+            Console.WriteLine("Список после удаления:");
+            for (ListItem<int> p = intList.Head; p != null; p = p.Next)
+            {
+                Console.WriteLine(p.Data);
+            }
 
             SinglyLinkedList<int> intListCopy = intList.CopyList();
+            Console.WriteLine("Копия списка:");
             for (ListItem<int> p = intListCopy.Head; p != null; p = p.Next)
             {
                 Console.WriteLine(p.Data);

@@ -147,12 +147,15 @@ namespace List
                 throw new Exception("Список пуст");
             }
 
-            for (ListItem<T> p = Head.Next, prev = Head; p != null; prev = p, p = p.Next)
+            SinglyLinkedList<T> newLinkedList = new SinglyLinkedList<T>();
+            newLinkedList.Head = Head;
+
+            for (ListItem<T> p = Head.Next; p != null; p = p.Next)
             {
-                p.Next = prev;
+                ListItem<T> pp = new ListItem<T>(p.Data, p.Next);
             }
 
-            Head = null;
+            return newLinkedList;
         }
 
         private ListItem<T> IterateItem(int index, int i, ListItem<T> item)
