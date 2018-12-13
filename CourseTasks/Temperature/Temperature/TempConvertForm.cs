@@ -57,10 +57,20 @@ namespace Temperature
             IScale[] scaleList = { new CelsiumScale(), new KelvinScale(), new FahrenheitScale() };
             IScale fromTemp = scaleList[0];
             IScale toTemp = scaleList[0];
-            string selectedFromScale = (string)cbFromTemp.SelectedItem;
-            string selectedToScale = (string)cbToTemp.SelectedItem;
             double temperatureValue = Convert.ToDouble(tbInputTemp.Text);
-            labelResult.Text = TemperatureConverter.ConvertTemperature(scaleList, fromTemp, toTemp, selectedFromScale, selectedToScale, temperatureValue) + " " + labelResult.Text;
+            foreach (IScale eScale in scaleList)
+            {
+                if (eScale.ScaleName == (string)cbFromTemp.SelectedItem)
+                {
+                    fromTemp = eScale;
+                }
+                else if (eScale.ScaleName == (string)cbToTemp.SelectedItem)
+                {
+                    toTemp = eScale;
+                }
+            }
+
+            labelResult.Text = TemperatureConverter.ConvertTemperature(fromTemp, toTemp, temperatureValue) + " " + labelResult.Text;
         }
     }
 }
